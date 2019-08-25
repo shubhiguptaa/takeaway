@@ -1,6 +1,5 @@
 
 FROM debian:stretch-slim
-# FROM python:3.7-slim-stretch
 
 # Never prompts the user for choices on installation/configuration of packages
 ENV DEBIAN_FRONTEND noninteractive
@@ -42,24 +41,20 @@ RUN set -ex \
         rsync \
         netcat \
         locales \
-    && apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget \
-    && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz \
-    && tar -xf Python-3.7.3.tar.xz \
-    && python3.7 --version \
-    && apt-get install python3-pip \
-    && pip3 --version \
+    && echo 'y' | apt-get install python
+    && echo 'y' | apt-get install python-pip
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_USER_HOME} airflow \
-    && pip3 install -U pip setuptools wheel \
-    && pip3 install pytz \
-    && pip3 install pyOpenSSL \
-    && pip3 install ndg-httpsclient \
-    && pip3 install pyasn1 \
-    && pip3 install apache-airflow[postgres,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
-    && pip3 install celery==3.1.23 \
-    && pip3 install 'redis==3.2' \
+    && pip install -U setuptools wheel \
+    && pip install pytz \
+    && pip install pyOpenSSL \
+    && pip install ndg-httpsclient \
+    && pip install pyasn1 \
+    && pip install apache-airflow[postgres,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
+    && pip install celery==3.1.23 \
+    && pip install 'redis==3.2' \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get autoremove -yqq --purge \
