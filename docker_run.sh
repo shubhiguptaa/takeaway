@@ -20,7 +20,7 @@ docker run -d -p 8080:8080 --net takeaway_assignment --link postgres:postgres -v
 echo $?
 
 sleep 10
-docker run -d  --name graphite --restart=always --net take_away_test -p 80:80 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  graphiteapp/graphite-statsd
+docker run -d  --name graphite --restart=always --net takeaway_assignment -p 80:80 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  graphiteapp/graphite-statsd
 echo $?
 
 sleep 10
