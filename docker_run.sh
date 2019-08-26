@@ -3,13 +3,13 @@
 
 #set base variables
 export net=takeaway_assignment
-export grafana_conf_vol=~/github/takeaway/graphana/conf/defaults.ini
+export grafana_conf_vol=~/github/takeaway/graana/conf/defaults.ini
 export dag_app_vol=~/github/takeaway/airflow/dags/
 
 #Pre-built images
-im_smtp=bytemark/smtp
-im_graphite=graphiteapp/graphite-statsd
-im_grafana=grafana/grafana
+im_smtp=shubhiguptaa/smtp
+im_graphite=shubhiguptaa/graphite-statsd
+im_grafana=shubhiguptaa/grafana
 
 #Create docker  network
 docker network list | grep $net
