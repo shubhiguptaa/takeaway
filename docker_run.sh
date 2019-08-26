@@ -4,7 +4,7 @@
 #set base variables
 export net=takeaway_assignment
 export grafana_conf_vol=~/github/takeaway/graphana/conf/defaults.ini
-export dag_app_vol=~/github/takeaway/airflow/dags/=
+export dag_app_vol=~/github/takeaway/airflow/dags/
 
 #Pre-built images
 im_smtp=bytemark/smtp
@@ -12,7 +12,12 @@ im_graphite=graphiteapp/graphite-statsd
 im_grafana=grafana/grafana
 
 #Create docker  network
-docker network create $net 
+check_net=`docker network list | grep $net`
+if [ -z $check_net ];then
+    echo "$net docket network already exists"
+else
+    docker network create $net 
+fi
 
 #Run postgres db
 docker run --name postgres --net $net -e POSTGRES_PASSWORD=airflow -d postgres
@@ -26,7 +31,7 @@ fi
 docker run --restart always --name smtp --net $net -d $im_smtp
 if [ `echo $?` == 0 ];then
     echo "smtp running"
-    docker ps |grep $im_smtp
+    docker ps |grep ${im_smtp}
     sleep 10
 fi
 
@@ -34,7 +39,7 @@ fi
 docker run -i -d --name grafana --net $net -v $grafana_conf_vol:/usr/share/graphana/conf/defaults.ini -p 3000:3000 $im_grafana
 if [ `echo $?` == 0 ];then
     echo "grafana running"
-    docker ps |grep $im_grafana
+    docker ps |grep ${im_grafana}
     sleep 10
 fi
 
@@ -55,4 +60,5 @@ if [ `echo $?` == 0 ];then
 fi
 
 #check all containers
+echo "\nListing ALL running Container\n"
 docker ps
