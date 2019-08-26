@@ -49,9 +49,11 @@ RUN set -ex \
     && useradd -ms /bin/bash -d ${AIRFLOW_USER_HOME} airflow \
     && pip install -U setuptools wheel \
     && pip install pytz \
-    && pip install pyOpenSSL \
-    && pip install ndg-httpsclient \
+#    && pip install pyOpenSSL \
+#    && pip install ndg-httpsclient \
     && pip install pyasn1 \
+    && pip install flask-bcrypt \
+    && pip install auth \
     && pip install apache-airflow[postgres,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && pip install 'apache-airflow[statsd]' \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \

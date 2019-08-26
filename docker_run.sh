@@ -12,9 +12,9 @@ im_graphite=graphiteapp/graphite-statsd
 im_grafana=grafana/grafana
 
 #Create docker  network
-check_net=`docker network list | grep $net`
-if [ -z $check_net ];then
-    echo "$net docket network already exists"
+docker network list | grep $net
+if [ `echo $?` == 0 ];then
+     echo "$net docket network already exists"
 else
     docker network create $net 
 fi
@@ -36,7 +36,7 @@ if [ `echo $?` == 0 ];then
 fi
 
 #Run grafana
-docker run -i -d --name grafana --net $net -v $grafana_conf_vol:/usr/share/graphana/conf/defaults.ini -p 3000:3000 $im_grafana
+docker run -i -d --name grafana --net $net -v ${grafana_conf_vol}:/usr/share/graphana/conf/defaults.ini -p 3000:3000 ${im_grafana}
 if [ `echo $?` == 0 ];then
     echo "grafana running"
     docker ps |grep ${im_grafana}
@@ -44,15 +44,15 @@ if [ `echo $?` == 0 ];then
 fi
 
 #Run GraphiteDB
-docker run -d  --name graphite --restart=always --net $net -p 80:80 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  $im_graphite
+docker run -d  --name graphite --restart=always --net $net -p 80:80 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  ${im_graphite}
 if [ `echo $?` == 0 ];then
     echo "Graphite running"
-    docker ps |grep $im-graphite
+    docker ps |grep ${im_graphite}
     sleep 10
 fi
 
 #Run airflow
-docker run -d -p 8080:8080 --net $net --link postgres:postgres -v $dag_app_vol:/usr/local/airflow/dags airflow webserver
+docker run -d -p 8080:8080 --net $net --link postgres:postgres -v ${dag_app_vol}:/usr/local/airflow/dags airflow webserver
 if [ `echo $?` == 0 ];then
     echo "Airflow running"
     docker ps |grep airflow
