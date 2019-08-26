@@ -1,28 +1,58 @@
 #!/bin/bash
+#Description: Run docker containers in sequence
 
-docker network create takeaway_assignment 
-echo $?
+#set base variables
+export net=takeaway_assignment
+export grafana_conf_vol=~/github/takeaway/graphana/conf/defaults.ini
+export dag_app_vol=~/github/takeaway/airflow/dags/=
 
+#Pre-built images
+im_smtp=bytemark/smtp
+im_graphite=graphiteapp/graphite-statsd
+im_grafana=grafana/grafana
 
-docker run --name postgres --net takeaway_assignment -e POSTGRES_PASSWORD=airflow -d postgres
-echo $?
-sleep 10
+#Create docker  network
+docker network create $net 
 
-docker run --restart always --name smtp -d bytemark/smtp
-exho $?
+#Run postgres db
+docker run --name postgres --net $net -e POSTGRES_PASSWORD=airflow -d postgres
+if [ `echo $?` == 0 ];then
+    echo "Postgres running"
+    docker ps |grep postgres
+    sleep 10
+fi
 
-sleep 10
-docker run -i -d --name grafana --net takeaway_assignment -v /Users/shubhigupta/github/takeaway/graphana/conf/defaults.ini:/usr/share/graphana/conf/defaults.ini -p 3000:3000 grafana/grafana
-echo $?
+#Run smtp
+docker run --restart always --name smtp --net $net -d $im_smtp
+if [ `echo $?` == 0 ];then
+    echo "smtp running"
+    docker ps |grep $im_smtp
+    sleep 10
+fi
 
-sleep 10
-docker run -d -p 8080:8080 --net takeaway_assignment --link postgres:postgres -v /Users/shubhigupta/github/takeaway/airflow/dags/:/usr/local/airflow/dags airflow webserver
-echo $?
+#Run grafana
+docker run -i -d --name grafana --net $net -v $grafana_conf_vol:/usr/share/graphana/conf/defaults.ini -p 3000:3000 $im_grafana
+if [ `echo $?` == 0 ];then
+    echo "grafana running"
+    docker ps |grep $im_grafana
+    sleep 10
+fi
 
-sleep 10
-docker run -d  --name graphite --restart=always --net takeaway_assignment -p 80:80 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  graphiteapp/graphite-statsd
-echo $?
+#Run GraphiteDB
+docker run -d  --name graphite --restart=always --net $net -p 80:80 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  $im_graphite
+if [ `echo $?` == 0 ];then
+    echo "Graphite running"
+    docker ps |grep $im-graphite
+    sleep 10
+fi
 
-sleep 10
+#Run airflow
+docker run -d -p 8080:8080 --net $net --link postgres:postgres -v $dag_app_vol:/usr/local/airflow/dags airflow webserver
+if [ `echo $?` == 0 ];then
+    echo "Airflow running"
+    docker ps |grep airflow
+    sleep 10
+fi
+
+#check all containers
 docker ps
-
