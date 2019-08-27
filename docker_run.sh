@@ -22,7 +22,7 @@ else
 fi
 
 #Run postgres db
-docker run --name postgres --net $net -e POSTGRES_PASSWORD=airflow -d {im_postgres}
+docker run --name postgres --net $net -e POSTGRES_PASSWORD=airflow -d ${im_postgres}
 if [ `echo $?` == 0 ];then
     echo "Postgres running"
     docker ps |grep postgres
