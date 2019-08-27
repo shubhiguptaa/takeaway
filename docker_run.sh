@@ -1,10 +1,16 @@
 #!/bin/bash
 #Description: Run docker containers in sequence
 
+#store arguments 
+git_repo=$1
+
 #set base variables
 export net=takeaway_assignment
-export grafana_conf_vol=~/github/takeaway/grafana/conf/defaults.ini
-export dag_app_vol=~/github/takeaway/airflow/dags/
+export grafana_conf_vol=$1/grafana/conf/defaults.ini
+export dag_app_vol=$1/airflow/dags/
+
+echo $grafana_conf_vol
+echo $dag_app_vol
 
 #Docker images
 im_smtp=shubhiguptaa/smtp

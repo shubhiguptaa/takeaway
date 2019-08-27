@@ -13,7 +13,7 @@ args = {
     'start_date': datetime(2019, 8, 25, 7, 40),
 }
 
-dag = DAG('final_dag',
+dag = DAG('BT_USD_exchange',
       schedule_interval='*/10 * * * *',
       default_args = args)
 
