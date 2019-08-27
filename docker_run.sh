@@ -54,7 +54,7 @@ if [ `echo $?` == 0 ];then
 fi
 
 #Run airflow
-docker run -d -p 8080:8080 --net $net --link postgres:postgres -v ${dag_app_vol}:/usr/local/airflow/dags ${im_airflow}  webserver
+docker run -d --name airflow -p 8080:8080 --net $net --link postgres:postgres -v ${dag_app_vol}:/usr/local/airflow/dags ${im_airflow}  webserver
 if [ `echo $?` == 0 ];then
     echo "Airflow running"
     docker ps |grep airflow
