@@ -8,6 +8,8 @@ This project facilitates an API call every 10 minutes to get the exchange rate a
 * Postgres - Airflow backend
 * StatsD - Send airflow metric aggregates to GraphiteDB
 * Grafana - Visualization and Alerting
+## Architecture
+![image](https://github.com/shubhiguptaa/takeaway/blob/master/Architecture.png)
 ## Setup and install
 * Clone the repository.
 * [docker_run.sh](https://github.com/shubhiguptaa/takeaway/blob/master/docker_run.sh) in the root of the repository will create a docker network and runs the docker containers for postgres, graphite, smtp, grafana and airflow.
@@ -20,17 +22,26 @@ Once the script has successfully run, the containers must be up and running.
 ```
 http://localhost:8080
 ```
-* Turn the 'BT-USD_Exchange' dag On by using on the toggle. By default, set of Off.
+* Turn the 'BT-USD_Exchange' dag On by using the toggle. By default, set to Off.
 * Launch graphana and login (credentials in the email).
 ```
 http://localhost:3000
 ```
  *You might be prompted to change the password.*
 * Import the dashboard [BT-USDExRate.json](https://github.com/shubhiguptaa/takeaway/blob/master/grafana/dashboard/BT-USDExRate.json). 
-* Add a notification channel and configure with email address for alerts.
-![image](https://github.com/shubhiguptaa/takeaway/blob/master/grafana-screenshot1.png)
 
 
-*Find more documentation in the respective folders*
+**_Find more documentation in the respective folders_**
+
+## Other tools
+### Graphite
+#### Docker -
+- Base Image - graphite/statsd
+- Port exposed - 2003, 2004, 8125, 8126
+### smtp
+#### Docker -
+- Base Image - bytemark/smtp
+
+
 
 
