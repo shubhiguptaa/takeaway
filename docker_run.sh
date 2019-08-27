@@ -3,7 +3,7 @@
 
 #set base variables
 export net=takeaway_assignment
-export grafana_conf_vol=~/github/takeaway/graana/conf/defaults.ini
+export grafana_conf_vol=~/github/takeaway/grafana/conf/defaults.ini
 export dag_app_vol=~/github/takeaway/airflow/dags/
 
 #Docker images
