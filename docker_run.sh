@@ -18,7 +18,7 @@ im_graphite=shubhiguptaa/graphite-statsd
 im_grafana=shubhiguptaa/grafana
 im_airflow=shubhiguptaa/airflow
 im_postgres=shubhiguptaa/postgres
-im_sematext=shubhiguptaa/sematext
+im_sematext=shubhiguptaa/sematext-agent
 
 #Create docker  network
 docker network list | grep $net
