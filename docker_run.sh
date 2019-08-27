@@ -28,43 +28,43 @@ else
 fi
 
 #Run postgres db
-docker run --name postgres --net $net -e POSTGRES_PASSWORD=airflow -d ${im_postgres}
+docker run --name postgres --net $net -e POSTGRES_PASSWORD=airflow -v pgdata:/var/lib/postgresql/data -d ${im_postgres}
 if [ `echo $?` == 0 ];then
-    echo "Postgres running"
     docker ps |grep postgres
-    sleep 10
+    echo "Postgres running"
+    sleep 5
 fi
 
 #Run smtp
 docker run --restart always --name smtp --net $net -d ${im_smtp}
 if [ `echo $?` == 0 ];then
-    echo "smtp running"
     docker ps |grep ${im_smtp}
-    sleep 10
+    echo "smtp running"
+    sleep 5
 fi
 
 #Run grafana
-docker run -i -d --name grafana --net $net -v ${grafana_conf_vol}:/usr/share/grafana/conf/defaults.ini -p 3000:3000 ${im_grafana}
+docker run -i -d --name grafana --net $net -v ${grafana_conf_vol}:/usr/share/grafana/conf/defaults.ini -v grafana-data:/var/lib/grafana -p 3000:3000 ${im_grafana}
 if [ `echo $?` == 0 ];then
-    echo "grafana running"
     docker ps |grep ${im_grafana}
-    sleep 10
+    echo "grafana running"
+    sleep 5
 fi
 
 #Run GraphiteDB
 docker run -d  --name graphite --restart=always --net $net -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  ${im_graphite}
 if [ `echo $?` == 0 ];then
-    echo "Graphite running"
     docker ps |grep ${im_graphite}
-    sleep 10
+    echo "Graphite running"
+    sleep 5
 fi
 
 #Run airflow
 docker run -d --name airflow -p 8080:8080 --net $net --link postgres:postgres -v ${dag_app_vol}:/usr/local/airflow/dags ${im_airflow}  webserver
 if [ `echo $?` == 0 ];then
-    echo "Airflow running"
     docker ps |grep airflow
-    sleep 10
+    echo "Airflow running"
+    sleep 5
 fi
 
 #check all containers
