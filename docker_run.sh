@@ -36,7 +36,7 @@ if [ `echo $?` == 0 ];then
 fi
 
 #Run grafana
-docker run -i -d --name grafana --net $net -v ${grafana_conf_vol}:/usr/share/graphana/conf/defaults.ini -p 3000:3000 ${im_grafana}
+docker run -i -d --name grafana --net $net -v ${grafana_conf_vol}:/usr/share/grafana/conf/defaults.ini -p 3000:3000 ${im_grafana}
 if [ `echo $?` == 0 ];then
     echo "grafana running"
     docker ps |grep ${im_grafana}

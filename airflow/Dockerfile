@@ -69,6 +69,7 @@ RUN set -ex \
         /usr/share/doc-base
 
 COPY script/entrypoint.sh /entrypoint.sh
+COPY script/add_user.py /add_user.py
 COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
 RUN sed -i 's/catchup_by_default = True/catchup_by_default = False/' ${AIRFLOW_USER_HOME}/airflow.cfg
 RUN sed -i'.orig' 's/max_threads = 2/max_threads = 1/g' ${AIRFLOW_USER_HOME}/airflow.cfg
@@ -80,5 +81,5 @@ EXPOSE 8080
 
 USER airflow
 WORKDIR ${AIRFLOW_USER_HOME}
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"] 
 CMD ["webserver"] # set default arg for entrypoint
