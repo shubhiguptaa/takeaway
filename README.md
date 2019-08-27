@@ -31,7 +31,7 @@ http://localhost:3000
 * Import the dashboard [BT-USDExRate.json](https://github.com/shubhiguptaa/takeaway/blob/master/grafana/dashboard/BT-USDExRate.json). 
 
 
-**_Find more documentation in the respective folders**
+**_Find more documentation in the respective folders_**
 
 ## Other tools
 ### Graphite
