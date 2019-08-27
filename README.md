@@ -8,6 +8,8 @@ This project facilitates an API call every 10 minutes to get the exchange rate a
 * Postgres - Airflow backend
 * StatsD - Send airflow metric aggregates to GraphiteDB
 * Grafana - Visualization and Alerting
+## Architecture
+![image](https://github.com/shubhiguptaa/takeaway/blob/master/Architecture.png)
 ## Setup and install
 * Clone the repository.
 * [docker_run.sh](https://github.com/shubhiguptaa/takeaway/blob/master/docker_run.sh) in the root of the repository will create a docker network and runs the docker containers for postgres, graphite, smtp, grafana and airflow.
