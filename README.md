@@ -8,6 +8,11 @@ This project facilitates an API call every 10 minutes to get the exchange rate a
 * Postgres - Airflow backend
 * StatsD - Send airflow metric aggregates to GraphiteDB
 * Grafana - Visualization and Alerting
+* Sematext - Infra monitoring
+## Email for notifications
+```
+takeawayt@yandex.com
+```
 ## Architecture
 ![image](https://github.com/shubhiguptaa/takeaway/blob/master/Architecture.png)
 ## Setup and install
@@ -29,7 +34,13 @@ http://localhost:3000
 ```
  *You might be prompted to change the password.*
 * Import the dashboard [BT-USDExRate.json](https://github.com/shubhiguptaa/takeaway/blob/master/grafana/dashboard/BT-USDExRate.json). 
-
+* Login to sematext to see infrastructure metrics.
+```
+https://apps.sematext.com/ui/login/
+Choose Europe
+Provide email :takeawayt@yandex.com
+Password : (in email)
+```
 
 **_Find more documentation in the respective folders_**
 
@@ -37,7 +48,7 @@ http://localhost:3000
 ### Graphite
 #### Docker -
 - Base Image - graphite/statsd
-- Port exposed - 2003, 2004, 8125, 8126
+- Port exposed - 2003, 2004, 8125, 8126\
 _Used docker volumes for persistent storage
 ### smtp
 #### Docker -
