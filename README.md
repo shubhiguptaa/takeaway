@@ -9,6 +9,10 @@ This project facilitates an API call every 10 minutes to get the exchange rate a
 * StatsD - Send airflow metric aggregates to GraphiteDB
 * Grafana - Visualization and Alerting
 * Sematext - Infra monitoring
+## Email for notifications
+```
+takeawayt@yandex.com
+```
 ## Architecture
 ![image](https://github.com/shubhiguptaa/takeaway/blob/master/Architecture.png)
 ## Setup and install
@@ -33,6 +37,9 @@ http://localhost:3000
 * Login to sematext to see infrastructure metrics.
 ```
 https://apps.sematext.com/ui/login/
+Choose Europe
+Provide email :takeawayt@yandex.com
+Password : (in email)
 ```
 
 **_Find more documentation in the respective folders_**
