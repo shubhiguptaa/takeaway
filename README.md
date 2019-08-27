@@ -6,6 +6,7 @@ This project facilitates an API call every 10 minutes to get the exchange rate a
 * Graphite - Application Backend
 * Airflow - Scheduling
 * Postgres - Airflow backend
+* StatsD - Send airflow metric aggregates to GraphiteDB
 * Grafana - Visualization and Alerting
 ## Setup and install
 * Clone the repository.
