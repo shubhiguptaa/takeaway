@@ -25,7 +25,7 @@ http://localhost:8080
 ```
 http://localhost:3000
 ```
-* You might be prompted to change the password.
+ *You might be prompted to change the password.*
 * Import the dashboard [BT-USDExRate.json](https://github.com/shubhiguptaa/takeaway/blob/master/grafana/dashboard/BT-USDExRate.json). 
 * Add a notification channel and configure with email address for alerts.
 ![image](https://github.com/shubhiguptaa/takeaway/blob/master/grafana-screenshot1.png)
