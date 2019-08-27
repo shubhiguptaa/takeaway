@@ -33,7 +33,7 @@ def notify_email(contextDict, **kwargs):
     Airflow bot <br>
     """.format(**contextDict)
 
-    send_email('abc@gmail.com', title, body)
+    send_email('takeawayt@yandex.com', title, body)
 
 
 

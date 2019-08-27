@@ -18,6 +18,7 @@ im_graphite=shubhiguptaa/graphite-statsd
 im_grafana=shubhiguptaa/grafana
 im_airflow=shubhiguptaa/airflow
 im_postgres=shubhiguptaa/postgres
+im_sematext=shubhiguptaa/sematext
 
 #Create docker  network
 docker network list | grep $net
@@ -66,6 +67,9 @@ if [ `echo $?` == 0 ];then
     echo "Airflow running"
     sleep 5
 fi
+
+docker run -d  --restart always --privileged -P --name st-agent -v /:/hostfs:ro -v /etc/passwd:/etc/passwd:ro  -v /etc/group:/etc/group:ro  -v /sys/kernel/debug:/sys/kernel/debug -v /var/run/:/var/run/ -v /proc:/host/proc:ro -v /etc:/host/etc:ro -v /sys:/host/sys:ro -v /usr/lib:/host/usr/lib:ro -e CONTAINER_TOKEN=4f3298d4-d390-45ea-9c22-48b9ce8864b9 -e INFRA_TOKEN=feb27af8-a61b-4275-91d9-f39f52f3ee31 -e REGION=EU -e JOURNAL_DIR=/var/run/st-agent -e LOGGING_WRITE_EVENTS=false -e LOGGING_REQUEST_TRACKING=false -e LOGGING_LEVEL=info -e NODE_NAME="`hostname`" -e CONTAINER_SKIP_BY_IMAGE=sematext ${im_sematext}
+
 
 #check all containers
 echo "\nListing ALL running Container\n"
