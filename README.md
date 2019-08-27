@@ -38,6 +38,7 @@ http://localhost:3000
 #### Docker -
 - Base Image - graphite/statsd
 - Port exposed - 2003, 2004, 8125, 8126
+_Used docker volumes for persistent storage
 ### smtp
 #### Docker -
 - Base Image - bytemark/smtp
