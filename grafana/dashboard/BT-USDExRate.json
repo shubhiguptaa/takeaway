@@ -25,7 +25,7 @@
           {
             "evaluator": {
               "params": [
-                10180
+                10070
               ],
               "type": "lt"
             },
@@ -59,7 +59,9 @@
           }
         ]
       },
-      "aliasColors": {},
+      "aliasColors": {
+        "exchange rate": "purple"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -108,7 +110,7 @@
           "fill": true,
           "line": true,
           "op": "lt",
-          "value": 10180
+          "value": 10070
         }
       ],
       "timeFrom": null,
@@ -185,7 +187,7 @@
         "frequency": "1m",
         "handler": 1,
         "message": "BT - USD High exchange rate alert",
-        "name": "Exchange Rate",
+        "name": "Exchange Rate-high",
         "noDataState": "keep_state",
         "notifications": [
           {
@@ -193,7 +195,9 @@
           }
         ]
       },
-      "aliasColors": {},
+      "aliasColors": {
+        "exchange_rate": "yellow"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -242,8 +246,7 @@
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 10200,
-          "yaxis": "left"
+          "value": 10200
         }
       ],
       "timeFrom": null,
@@ -289,7 +292,9 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "dag processing time": "rgb(87, 242, 223)"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -334,16 +339,7 @@
           "target": "alias(stats.gauges.airflow.dag_processing.last_runtime.myapp, 'dag processing time')"
         }
       ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 2,
-          "yaxis": "left"
-        }
-      ],
+      "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
@@ -364,7 +360,7 @@
       "yaxes": [
         {
           "decimals": 4,
-          "format": "none",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -386,7 +382,10 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "duration-db write": "orange",
+        "duration-get ex rate": "blue"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -466,7 +465,7 @@
       "yaxes": [
         {
           "decimals": null,
-          "format": "none",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -496,7 +495,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -516,5 +515,5 @@
   "timezone": "",
   "title": "BT-USD Exchange Rate",
   "uid": "zTP1JFKWz",
-  "version": 23
+  "version": 31
 }
