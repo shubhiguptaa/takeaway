@@ -22,17 +22,26 @@ Once the script has successfully run, the containers must be up and running.
 ```
 http://localhost:8080
 ```
-* Turn the 'BT-USD_Exchange' dag On by using on the toggle. By default, set of Off.
+* Turn the 'BT-USD_Exchange' dag On by using the toggle. By default, set to Off.
 * Launch graphana and login (credentials in the email).
 ```
 http://localhost:3000
 ```
  *You might be prompted to change the password.*
 * Import the dashboard [BT-USDExRate.json](https://github.com/shubhiguptaa/takeaway/blob/master/grafana/dashboard/BT-USDExRate.json). 
-* Add a notification channel and configure with email address for alerts.
-![image](https://github.com/shubhiguptaa/takeaway/blob/master/grafana-screenshot1.png)
 
 
-*Find more documentation in the respective folders*
+**_Find more documentation in the respective folders**
+
+## Other tools
+### Graphite
+#### Docker -
+- Base Image - graphite/statsd
+- Port exposed - 2003, 2004, 8125, 8126
+### smtp
+#### Docker -
+- Base Image - bytemark/smtp
+
+
 
 
