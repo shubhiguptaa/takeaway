@@ -22,7 +22,7 @@ im_postgres=shubhiguptaa/postgres
 #Create docker  network
 docker network list | grep $net
 if [ `echo $?` == 0 ];then
-     echo "$net docket network already exists"
+     echo "$net docker network already exists"
 else
     docker network create $net 
 fi
@@ -52,7 +52,7 @@ if [ `echo $?` == 0 ];then
 fi
 
 #Run GraphiteDB
-docker run -d  --name graphite --restart=always --net $net -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  ${im_graphite}
+docker run -d  --name graphite --restart=always --net $net -v graphite-data:/opt/graphite/storage/whisper -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126  ${im_graphite}
 if [ `echo $?` == 0 ];then
     docker ps |grep ${im_graphite}
     echo "Graphite running"
