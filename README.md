@@ -50,9 +50,12 @@ Password : (in email)
 - Base Image - graphite/statsd
 - Port exposed - 2003, 2004, 8125, 8126\
 _Used docker volumes for persistent storage
-### smtp
+### SMTP
 #### Docker -
 - Base Image - bytemark/smtp
+### Sematext
+- Managed monitoring 
+- Docker base image - sematext/agent:latest
 
 ## Scalability and HA options
 - A similar setup can be done on Kubernetes for making each component scalable and HA using deployments, services, ingress, PDB, HPA and stateful sets.
