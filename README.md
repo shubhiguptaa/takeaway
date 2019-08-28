@@ -41,6 +41,7 @@ Choose Europe
 Provide email :takeawayt@yandex.com
 Password : (in email)
 ```
+* Click on the BT-USD-exchange dashboard
 
 **_Find more documentation in the respective folders_**
 
