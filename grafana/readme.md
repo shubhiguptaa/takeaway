@@ -4,4 +4,4 @@
 - Port exposed - 3000
 ## Config Updates
 - SMTP\
-*Used Docker Volumes for persitent configs*
+*Used Docker Volumes for persistent configs and data*
