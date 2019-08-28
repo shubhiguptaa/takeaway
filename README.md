@@ -28,7 +28,7 @@ Once the script has successfully run, the containers must be up and running.
 http://localhost:8080
 ```
 * Turn the 'BT-USD_Exchange' dag On by using the toggle. By default, set to Off.
-* Launch graphana and login (credentials in the email).
+* Launch grafana and login (credentials in the email).
 ```
 http://localhost:3000
 ```
@@ -41,6 +41,7 @@ Choose Europe
 Provide email :takeawayt@yandex.com
 Password : (in email)
 ```
+* Click on the BT-USD-exchange dashboard
 
 **_Find more documentation in the respective folders_**
 
@@ -50,9 +51,18 @@ Password : (in email)
 - Base Image - graphite/statsd
 - Port exposed - 2003, 2004, 8125, 8126\
 _Used docker volumes for persistent storage
-### smtp
+### SMTP
 #### Docker -
 - Base Image - bytemark/smtp
+### Sematext
+- Managed monitoring 
+- Docker base image - sematext/agent:latest
+
+## Scalability and HA options
+- A similar setup can be done on Kubernetes for making each component scalable and HA using deployments, services, ingress, PDB, HPA and stateful sets.
+- PostgresDB can be setup on managed services like RDS clusters for HA and scalability options and DR.
+- Graphite can be deployed as a stateful set on K8s.
+- Airflow as deployment can be scaled using Horizontal Pod Autoscalers and Pod Disruption Budget for HA
 
 
 
