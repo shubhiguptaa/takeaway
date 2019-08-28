@@ -54,6 +54,12 @@ _Used docker volumes for persistent storage
 #### Docker -
 - Base Image - bytemark/smtp
 
+## Scalability and HA options
+- A similar setup can be done on Kubernetes for making each component scalable and HA using deployments, services, ingress, PDB, HPA and stateful sets.
+- PostgresDB can be setup on managed services like RDS clusters for HA and scalability options and DR.
+- Graphite can be deployed as a stateful set on K8s.
+- Airflow as deployment can be scaled using Horizontal Pod Autoscalers and Pod Disruption Budget for HA
+
 
 
 
