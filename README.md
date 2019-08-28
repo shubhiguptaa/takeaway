@@ -28,7 +28,7 @@ Once the script has successfully run, the containers must be up and running.
 http://localhost:8080
 ```
 * Turn the 'BT-USD_Exchange' dag On by using the toggle. By default, set to Off.
-* Launch graphana and login (credentials in the email).
+* Launch grafana and login (credentials in the email).
 ```
 http://localhost:3000
 ```
